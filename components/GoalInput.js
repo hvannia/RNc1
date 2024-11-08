@@ -1,6 +1,13 @@
 import { useState } from "react";
 
-import { StyleSheet, View, TextInput, Button, Modal } from "react-native";
+import {
+  StyleSheet,
+  Image,
+  View,
+  TextInput,
+  Button,
+  Modal,
+} from "react-native";
 
 function GoalInput(props) {
   const [enteredGoalText, setEnteredGoalText] = useState("");
@@ -16,18 +23,22 @@ function GoalInput(props) {
   return (
     <Modal visible={props.visible} animationType="slide">
       <View style={styles.inputContainer}>
+        <Image
+          style={styles.image}
+          source={require("../assets/images/goal.png")}
+        />
         <TextInput
           placeholder="Course goal"
           style={styles.textInput}
           onChangeText={goalInputHandler}
           value={enteredGoalText}
         />
-        <View>
+        <View styles={styles.buttonContainer}>
           <View style={styles.button}>
-            <Button title="Add Goal" onPress={addGoalHandler} />
+            <Button title="Add Goal" color="#57706a" onPress={addGoalHandler} />
           </View>
           <View style={styles.button}>
-            <Button title="Cancel" onPress={props.onCancel} />
+            <Button title="Cancel" color="#c46060" onPress={props.onCancel} />
           </View>
         </View>
       </View>
@@ -40,29 +51,33 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     color: "#e6f6f2",
     borderColor: "#cccccc",
+    borderRadius: 6,
     backgroundColor: "#57706a",
     width: "100%",
     marginRight: 8,
-    padding: 8,
+    padding: 16,
   },
   inputContainer: {
     flex: 1,
-    flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 24,
     padding: 16,
-    backgroundColor: "#e6f6f2",
     borderBottomWidth: 1,
     borderBottomColor: "#cccccc",
+    backgroundColor: "#c6dfd9",
   },
   buttonContainer: {
     marginTop: 16,
     flexDirection: "row",
   },
   button: {
-    width: "30%",
+    width: 100,
     marginHorizontal: 8,
+  },
+  image: {
+    width: 100,
+    height: 100,
+    margin: 20,
   },
 });
 
